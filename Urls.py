@@ -1,4 +1,5 @@
 # add this to url patterns
+from .models import *
 urlpatterns=[path('receipes/',receipes,name="reciepes"),
     path('delete_receipe/<id>/',delete_receipe,name="delete_receipes"),
     path('update_receipe/<id>/',update_receipe,name="update_receipe"),
