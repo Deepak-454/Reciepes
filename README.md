@@ -1,1 +1,1 @@
-# Reciepes
+# Reciepes website using Django
