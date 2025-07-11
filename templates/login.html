@@ -1,0 +1,143 @@
+{%extends "base.html"%}
+{%block title%}Login{%endblock%}
+{%block content%}
+<style>
+    body {
+      background: linear-gradient(135deg, #017a29 0%, #036a57 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-container {
+      background: #fff;
+      padding: 2.5rem 2rem 2rem 2rem;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px rgba(34,139,34,0.10), 0 1.5px 8px rgba(34,139,34,0.08);
+      width: 100%;
+      max-width: 350px;
+      text-align: center;
+    }
+    .login-container h2 {
+      color: #219150;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0 1.2rem 0;
+      border: 1.5px solid #b2f7cc;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #f6fff7;
+      transition: border-color 0.2s;
+    }
+    .login-container input[type="text"]:focus,
+    .login-container input[type="password"]:focus {
+      border-color: #12d051;
+      outline: none;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 0.8rem;
+      background: linear-gradient(90deg, #0ca33e 0%, #026b58 100%);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(67,233,123,0.10);
+    }
+    .login-container button:hover {
+      background: linear-gradient(90deg, #38f9d7 0%, #43e97b 100%);
+      box-shadow: 0 4px 16px rgba(67,233,123,0.13);
+    }
+    .login-container .extra {
+      margin-top: 1.2rem;
+      font-size: 0.95rem;
+      color: #219150;
+    }
+    .login-container .extra a {
+      color: #219150;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .login-container .extra a:hover {
+      color: #02511c;
+    }
+    /* Django messages styling */
+    .messages {
+      margin-bottom: 1.2rem;
+      text-align: left;
+    }
+    .messages .message {
+      padding: 0.8em 1em;
+      border-radius: 7px;
+      margin-bottom: 0.7em;
+      font-size: 1rem;
+      font-weight: 500;
+      box-shadow: 0 1px 6px rgba(67,233,123,0.08);
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .messages .success {
+      background: #e6fff2;
+      color: #219150;
+      border-left: 5px solid #43e97b;
+    }
+    .messages .error {
+      background: #fff0f0;
+      color: #c0392b;
+      border-left: 5px solid #e74c3c;
+    }
+    .messages .info {
+      background: #e9f7ff;
+      color: #0984e3;
+      border-left: 5px solid #38f9d7;
+    }
+    .messages .warning {
+      background: #fffbe7;
+      color: #b8860b;
+      border-left: 5px solid #ffcc70;
+    }
+  </style>
+</head>
+<body>
+  <form class="login-container" action="#" method="POST">
+    <h2>Login</h2>
+    {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <div class="message {{ message.tags }}">
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+              &#9888;
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+              &#10003;
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+              &#8505;
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+              &#9888;
+            {% endif %}
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {%csrf_token%}
+    <input type="text" placeholder="Username" name="username" required>
+    <input type="password" placeholder="Password" name="password" required>
+    <button type="submit">Sign In</button>
+    <div class="extra">
+      <span>Not any account? <a href='/Register/'>Register</a></span>
+    </div>
+  </form>
+</body>
+{%endblock%}
