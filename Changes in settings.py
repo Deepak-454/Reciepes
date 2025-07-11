@@ -6,5 +6,5 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATICFILES_DIR={
     os.path.join(BASE_DIR,"public/static")
 }
-MEDIA_ROOT=os.path.join(BASE_DIR,'public/static')
+MEDIA_ROOT=os.path.join(BASE_DIR,'public/static') # create a folder public and in it create a static folder
 MEDIA_URL='/media/'
