@@ -6,3 +6,7 @@ urlpatterns=[path('receipes/',receipes,name="reciepes"),
     path('login/',login_page,name="login"),
     path('logout/',logout_page,name="logout"),
     path('Register/',register,name="register")]
+# For adding images urls
+if settings.DEBUG:
+    urlpatterns +=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+urlpatterns+=staticfiles_urlpatterns() 
